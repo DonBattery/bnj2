@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  #Nginx Service
+  webserver:
+    build:
+      context: client
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  # Backend
+  backend:
+    build:
+      context: server
+      dockerfile: Dockerfile
+    ports:
+      - "3250:3250"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
