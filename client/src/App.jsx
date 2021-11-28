@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState } from 'react';
+import Login from './Login';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = function () {
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   return (
     <div className="App">
       <header className="App-header centered"><h1>Bounce 'n Junk</h1></header>
+      {isLoggedIn && <>Game</>}
+      {!isLoggedIn && <Login onLogin={() => setLoggedIn(true)} />}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
