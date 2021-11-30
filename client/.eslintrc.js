@@ -19,5 +19,6 @@ module.exports = {
   ],
   rules: {
     'func-names': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
   },
 };

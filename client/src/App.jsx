@@ -7,7 +7,7 @@ const App = function () {
 
   return (
     <div className="App">
-      <header className="App-header centered"><h1>Bounce &apos;n Junk</h1></header>
+      <header className="App-header centered fonted"><h1>Bounce &apos;n Junk</h1></header>
       {isLoggedIn && <>Game</>}
       {!isLoggedIn && <Login onLogin={() => setLoggedIn(true)} />}
     </div>

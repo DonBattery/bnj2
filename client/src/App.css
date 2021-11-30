@@ -5,14 +5,5 @@
 }
 
 .App-header {
-  font-family: 'Comic Neue', cursive;
-  font-family: 'Press Start 2P', cursive;
   height: 3rem;
-  font-size: 0.75rem;
-}
-
-.centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
