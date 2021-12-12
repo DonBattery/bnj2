@@ -8,9 +8,13 @@ const App = function () {
 
   return (
     <div className="App">
-      <header className="App-header centered fonted"><h1>Bounce &apos;n Junk</h1></header>
-      {loginData && <Game world={loginData} />}
-      {!loginData && <Login onLogin={(data) => setLoginData(data)} />}
+      <div className="App-container">
+        {!loginData && <>
+          <header className="App-header centered fonted"><h1>Bounce &apos;n Junk</h1></header>
+          <Login onLogin={(data) => setLoginData(data)} />
+        </>}
+        {loginData && <Game world={loginData} />}
+      </div>
     </div>
   );
 };

@@ -17,24 +17,13 @@ const Login = function ({ onLogin }) {
     });
   };
 
-  // useEffect(() => {
-  //   console
-  //   const chars = document.q
-  // }, []);
-
-  // console.log(characters.map(c => c.load(5)));
-  // console.log(characters.map(c => c.getCanvas()));
   return (
     <form onSubmit={requestLogin} className="Login centered">
       <label className="Login-block fonted">
         Name
-        <input className="Login-input" type="text" value={nickname} onChange={({ target }) => setNickname(target?.value)} placeholder="  min 3 max 12" maxLength="12" size="13" />
+        <input className="Login-input fonted" required type="text" value={nickname} onChange={({ target }) => setNickname(target?.value)} placeholder="  min 3 max 12" maxLength="12" size="13" />
       </label>
 
-      <label className="Login-block fonted">
-        Color
-        <input className="Login-input" type="color" value={color} onChange={({ target }) => setColor(target?.value)} />
-      </label>
       <label className="Login-block fonted">
         Character
         {characters.map((c) => <Character key={c} id={c} />)}
