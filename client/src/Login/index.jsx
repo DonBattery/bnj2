@@ -4,18 +4,20 @@ import Character from '../Character';
 import PropTypes from 'prop-types';
 import './index.css';
 
-const characters = ['doux', 'mort', 'tard', 'vita'];
+const characters = ['dino-doux', 'dino-doux', 'dino-doux', 'dino-doux', 'dino-doux'];
 
 const Login = function ({ onLogin }) {
   const [nickname, setNickname] = useState('');
-  const [color, setColor] = useState('#ff0000');
+  const [character, setCharacter] = useState(0);
 
   const requestLogin = (event) => {
     event.preventDefault();
-    window.starx.request('Game.Join', { nickname, color }, (data) => {
+    window.starx.request('Game.Join', { nickname, color: 'red' }, (data) => {
       onLogin(data);
     });
   };
+
+  const handleSelect = id => () => setCharacter(id);
 
   return (
     <form onSubmit={requestLogin} className="Login centered">
@@ -26,7 +28,12 @@ const Login = function ({ onLogin }) {
 
       <label className="Login-block fonted">
         Character
-        {characters.map((c) => <Character key={c} id={c} />)}
+
+        <div className="Login-characters">
+          {characters.map((c, i) => <div onClick={handleSelect(i)}>
+            <Character selected={i === character} key={c} id={c} />
+          </div>)}
+        </div>
       </label>
 
       <label className="Login-block fonted">

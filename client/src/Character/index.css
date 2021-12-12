@@ -1,4 +1,12 @@
-.Character {
-    width: 24px;
-    height: 24px;
+.Wrapper.selected {
+    border: 2px solid white;
+}
+
+
+.Wrapper {
+    zoom: 3;
+    border-radius: 3px;
+    border: 2px solid black;
+    margin-top: 0.25rem;
+    margin-right: 0.5rem;
 };
