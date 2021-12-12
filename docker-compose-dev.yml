@@ -2,15 +2,16 @@ version: '3'
 
 services:
 
-  #Nginx Service
-  webserver:
+  # Frontend
+  frontend:
     build:
       context: client
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    tty: true
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./client:/app
     ports:
-      - "3000:3000"
+      - 3000:3000
+
     depends_on:
       - backend
     networks:
@@ -20,13 +21,14 @@ services:
   backend:
     build:
       context: server
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./server:/app
     ports:
-      - "3250:3250"
+      - 9090:9090
     networks:
       - app-network
 
 networks:
   app-network:
     driver: bridge
-
