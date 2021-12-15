@@ -10,33 +10,37 @@ import './index.css';
 
 const [WIDTH, HEIGHT] = [20, 20];
 
-const Character = function ({ id, selected }) {
+export const Character = function ({ id, selected, selectedFrame, ...props }) {
   const app = useApp();
   const [frames, setFrames] = useState([]);
 
   const spriteSheet = `/assets/${id}.json`
 
   useEffect(() => {
-    app.loader.add(spriteSheet).load((loader, resource) => {
-      setFrames(
-        resource[spriteSheet].data.animations
-      );
-    });
-  }, []);
+    const loadedSprite = app.loader.resources?.[spriteSheet];
+    if (!loadedSprite) {
+      app.loader.add(spriteSheet).load((loader, resource) => {
+        setFrames(
+          resource[spriteSheet].data.animations
+        );
+      });
+    } 
+  }, [app]);
 
   if (frames.length === 0) {
     return null;
   }
 
-  const selectedFrames = frames[selected ? 'run' : 'walk'];
+  const selectedFrames = selectedFrame ? [selectedFrame] : frames[selected ? 'run' : 'walk'];
   const textures = selectedFrames.map(f => PIXI.Texture.from(f));
-  // console.log();
-  // return null;
+
   return (
     <AnimatedSprite
       animationSpeed={0.2}
       isPlaying={selected}
       textures={textures}
+      position={props.position}
+      {...props}
     />
   );
 };

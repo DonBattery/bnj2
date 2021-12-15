@@ -31,7 +31,7 @@ const Login = function ({ onLogin }) {
 
         <div className="Login-characters">
           {characters.map((c, i) => <div onClick={handleSelect(i)}>
-            <Character selected={i === character} key={c} id={c} />
+            <Character selected={i === character} selectedFrame="image13.png" key={c} id={c} />
           </div>)}
         </div>
       </label>

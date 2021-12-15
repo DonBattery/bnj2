@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Stage, Sprite } from '@inlet/react-pixi'
+import Control from './Control';
 import './index.css';
 
 const resize = (canvasRef, cWidth, cHeight)  => {
@@ -27,13 +28,17 @@ const Game = function ({ id }) {
     doResize();
   }, [canvasRef]);
 
+  const image = "image6.png"
+
   return (
-    <Stage ref={canvasRef} width={WIDTH} height={HEIGHT} >  
+   <Control>
+      <Stage ref={canvasRef} width={WIDTH} height={HEIGHT} >  
       {players.map(p => (
-        <Sprite image="../sprites/vita/sprite_00.png" x={p.x} y={p.y} />
+        <Sprite image={image} x={p.x} y={p.y} />
       ))}
     </Stage>
 
+   </Control>
   );
 };
 
