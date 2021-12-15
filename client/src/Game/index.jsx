@@ -37,7 +37,6 @@ const Game = function ({ id }) {
         <Sprite image={image} x={p.x} y={p.y} />
       ))}
     </Stage>
-
    </Control>
   );
 };
