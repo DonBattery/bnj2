@@ -1,0 +1,33 @@
+.Login {
+    flex-direction: column;
+}
+
+.Login-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+    font-size: min(2vw, 5vh, 2rem);
+    width: 100%;
+}
+
+.Login-input {
+    margin-top: 1rem;
+    font-size: min(3vw, 5vh, 2rem);
+    padding: 1rem;
+    background-color: black;
+    color: white;
+    border-radius: 0.5rem;
+}
+
+.Login-button {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 3vw;
+    background-color: black;
+    color: white;
+}
+
+.Login-characters {
+    display: flex;
+}
+

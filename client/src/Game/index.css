@@ -1,0 +1,21 @@
+.Game {
+    position: relative;
+    height: calc(100% - 3rem);
+}
+
+.Game-debug {
+    position: absolute;
+    bottom: 0;
+    background: black;
+    color: white;
+}
+
+.Game-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+canvas {
+    image-rendering: pixelated;
+}

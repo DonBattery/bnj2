@@ -156,7 +156,7 @@ func (game *Game) AfterInit() {
 	game.statusTimer = scheduler.NewTimer(time.Second*5, func() {
 		fmt.Printf("%s UserCount: %d\n", time.Now().Format("2006/01/02 15:04:05"), game.room.Count())
 	})
-	game.updateTimer = scheduler.NewTimer(time.Second/30, func() {
+	game.updateTimer = scheduler.NewTimer(time.Second/60, func() {
 		game.Update()
 		game.room.Broadcast("GameUpdate", game.Dump())
 	})
