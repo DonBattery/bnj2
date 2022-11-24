@@ -1,14 +1,22 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState } from 'react';
+import Login from './Login';
+import Game from './Game';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = function () {
+  const [loginData, setLoginData] = useState();
 
   return (
     <div className="App">
-      <header className="App-header centered"><h1>Bounce 'n Junk</h1></header>
+      <div className="App-container">
+        {!loginData && <>
+          <header className="App-header centered fonted"><h1>Bounce &apos;n Junk</h1></header>
+          <Login onLogin={(data) => setLoginData(data)} />
+        </>}
+        {loginData && <Game world={loginData} />}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

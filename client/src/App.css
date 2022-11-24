@@ -2,17 +2,17 @@
   background-color: rgb(26, 119, 177);
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-header {
-  font-family: 'Comic Neue', cursive;
-  font-family: 'Press Start 2P', cursive;
-  height: 3rem;
-  font-size: 0.75rem;
+  font-size: min(2vw, 5vh, 2rem);
+  margin-bottom: 2rem;
+  margin-top: 1rem;
 }
 
-.centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.App-container {
+  width: fit-content;
 }
