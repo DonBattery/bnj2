@@ -54,7 +54,7 @@ jobs:
           node-version: 16.x
 
       # Install dependencies
-      - run: npm run ci
+      - run: npm ci
         working-directory: client
 
       # Build the project
