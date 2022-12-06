@@ -1,5 +1,6 @@
 ---
 # This action should run on every push except on push to master
+
 name: CI
 
 on:
@@ -10,53 +11,50 @@ on:
 jobs:
   golang-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out the repo
+        uses: actions/checkout@v3
 
-      # Setup Go
-      - name: Setup Go
-        uses: actions/setup-go@v2
+      - name: Setup Golang 1.17.0
+        uses: actions/setup-go@v3
         with:
-          go-version: "1.17.0" # The Go version to download (if necessary) and use.
+          go-version: "1.17.0"
 
-      # Install all the dependencies
       - name: Install dependencies
         run: |
           go version
           go get -u golang.org/x/lint/golint
 
-      # Run build of the application
-      - name: Run build
+      - name: Build the server
         run: go build .
-        working-directory: server
 
-      # Run vet & lint on the code
-      - name: Run vet & lint
+      - name: Run vet & lint on the code
         run: |
           go vet .
           golint .
-        working-directory: server
 
-      # Run testing on the code
-      - name: Run testing
+      - name: Run Go tests
         run: go test ./... -v
-        working-directory: server
 
   javascript-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out the repo
+      - uses: actions/checkout@v3
 
-      # Setup Node.js
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
 
-      # Install dependencies
-      - run: npm ci
-        working-directory: client
+      - name: Install dependencies
+        run: npm ci
 
-      # Build the project
-      - run: npm run build
-        working-directory: client
+      - name: Build the client
+        run: npm run build

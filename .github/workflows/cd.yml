@@ -6,6 +6,8 @@
 # Then an Ansible playbokk will be executed on the staging server
 # to update the service with these new images.
 
+name: CD
+
 on:
   pull_request:
     branches:
@@ -14,9 +16,42 @@ on:
       - closed
 
 jobs:
-  if_merged:
+  deploy-to-staging:
+    # Only run when a pull request is merged
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: devops/ansible
+
     steps:
-      - run: |
-          echo The PR was merged
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies Including Ansible
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Write inventory file
+          env:
+            INVENTORY: ${{ secrets.STAGING_INVENTORY }}
+          run: 'echo "$INVENTORY" > inventory'
+
+      - name: Install SSH key
+              uses: shimataro/ssh-key-action@v2
+              with:
+                key: ${{ secrets.STAGING_SSH_KEY }}
+                name: id_rsa # optional
+                known_hosts: ${{ secrets.STAGING_KNOWN_HOSTS }}
+                # config: ${{ secrets.STAGING_SSH_CONFIG }} # ssh_config; optional
+                if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
+
+      - name: run playbook
+          run: |
+            ansible-playbook -i inventory deploy.yml
