@@ -54,5 +54,7 @@ jobs:
 
       - name: Deploy to Staging with Ansible
         run: |
+          cat inventory
+          ls -a
           ls -a ~/.ssh
           ansible-playbook -i inventory --private-key=~/.ssh/id_rsa deploy.yml
