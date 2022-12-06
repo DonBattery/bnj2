@@ -1,0 +1,7 @@
+---
+# This workflow runs when the master branch changes. A new Docker image will be built
+# for both the Frontend and the Backend, and they will be pushed to Docker Hub
+# with the 'staging' tag.
+
+# Then an Ansible playbokk will be executed on the staging server
+# to update the service with these new images.
