@@ -44,13 +44,13 @@ jobs:
           run: 'echo "$INVENTORY" > inventory'
 
       - name: Install SSH key
-              uses: shimataro/ssh-key-action@v2
-              with:
-                key: ${{ secrets.STAGING_SSH_KEY }}
-                name: id_rsa # optional
-                known_hosts: ${{ secrets.STAGING_KNOWN_HOSTS }}
-                # config: ${{ secrets.STAGING_SSH_CONFIG }} # ssh_config; optional
-                if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
+          uses: shimataro/ssh-key-action@v2
+          with:
+            key: ${{ secrets.STAGING_SSH_KEY }}
+            name: id_rsa # optional
+            known_hosts: ${{ secrets.STAGING_KNOWN_HOSTS }}
+            # config: ${{ secrets.STAGING_SSH_CONFIG }} # ssh_config; optional
+            if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 
       - name: run playbook
           run: |
