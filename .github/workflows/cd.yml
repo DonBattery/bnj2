@@ -38,19 +38,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Write inventory file
+      - name: Write SSH file
         env:
-          INVENTORY: ${{ secrets.STAGING_INVENTORY }}
-        run: 'echo "$INVENTORY" > inventory'
-
-      - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.STAGING_SSH_KEY }}
-          name: id_rsa # optional
-          known_hosts: ${{ secrets.STAGING_KNOWN_HOSTS }}
-          # config: ${{ secrets.STAGING_SSH_CONFIG }} # ssh_config; optional
-          if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
+          SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
+        run: 'echo "$SSH_KEY" > ${HOME}/.ssh/id_rsa'
 
       - name: Deploy to Staging with Ansible
         run: |
