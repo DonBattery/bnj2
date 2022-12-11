@@ -53,5 +53,5 @@ jobs:
       - name: Deploy to Staging with Ansible
         run: |
           ls -a
-          ansible -i inventory all -m ping -vvv
+          ansible --key-file id_rsa -i inventory all -m ping -vvv
           ansible-playbook -i inventory deploy.yml
