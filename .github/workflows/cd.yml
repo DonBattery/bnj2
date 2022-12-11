@@ -45,6 +45,13 @@ jobs:
           echo "$SSH_KEY" > id_rsa
           chmod 600 id_rsa
 
+      - name: Write known_hosts file
+        env:
+          KNOWN_HOSTS: ${{ secrets.STAGING_KNOWN_HOSTS }}
+        run: |
+          echo "$KNOWN_HOSTS" > known_hosts
+          chmod 600 known_hosts
+
       - name: Write Inventory file
         env:
           INVENTORY: ${{ secrets.STAGING_INVENTORY }}
