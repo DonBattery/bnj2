@@ -2,7 +2,7 @@
 - name: This is a hello-world example
   hosts: all
   vars:
-    ansible_ssh_common_args: "-o StrictHostKeyChecking=no -i ${HOME}/.ssh/id_rsa"
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no -i id_rsa"
   tasks:
     - name: Create a file called '/tmp/testfile.txt' with the content 'hello world'.
       copy:

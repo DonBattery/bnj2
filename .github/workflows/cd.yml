@@ -42,9 +42,8 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
         run: |
-          mkdir ${HOME}/.ssh
-          echo "$SSH_KEY" > ${HOME}/.ssh/id_rsa
-          chmod 600 ${HOME}/.ssh/id_rsa
+          echo "$SSH_KEY" > id_rsa
+          chmod 600 id_rsa
 
       - name: Write Inventory file
         env:
@@ -53,7 +52,5 @@ jobs:
 
       - name: Deploy to Staging with Ansible
         run: |
-          cat inventory
           ls -a
-          ls -a ~/.ssh
           ansible-playbook -i inventory deploy.yml
