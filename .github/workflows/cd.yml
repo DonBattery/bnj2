@@ -8,17 +8,22 @@
 
 name: CD
 
+# on:
+#   pull_request:
+#     branches:
+#       - master
+#     types:
+#       - closed
+
 on:
-  pull_request:
-    branches:
+  push:
+    branches-ignore:
       - master
-    types:
-      - closed
 
 jobs:
   deploy-to-staging:
     # Only run when a pull request is merged
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -57,8 +62,8 @@ jobs:
           INVENTORY: ${{ secrets.STAGING_INVENTORY }}
         run: echo "$INVENTORY" > inventory
 
+      # ansible --key-file id_rsa -i inventory all -m ping -vvv
       - name: Deploy to Staging with Ansible
         run: |
           ls -a
-          ansible --key-file id_rsa -i inventory all -m ping -vvv
           ansible-playbook -i inventory deploy.yml
