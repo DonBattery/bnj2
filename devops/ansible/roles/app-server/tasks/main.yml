@@ -1,5 +1,9 @@
 - name: Create a file called '/tmp/testfile.txt' with the content 'hello world'.
-  copy:
+  ansible.builtin.copy:
     content: hello-world
     dest: /tmp/testfile.txt
     mode: 0644
+
+- name: Test PWD
+  ansible.builtin.shell:
+    cmd: pwd
