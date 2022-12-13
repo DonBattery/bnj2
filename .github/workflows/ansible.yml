@@ -69,4 +69,4 @@ jobs:
       - name: Deploy to Staging with Ansible
         run: |
           ls -a
-          ansible-playbook -i inventory deploy-staging.yml
+          ansible-playbook -vvv -i inventory deploy-staging.yml
