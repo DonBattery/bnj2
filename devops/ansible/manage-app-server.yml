@@ -3,7 +3,6 @@
   hosts: all
   vars:
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no -i id_rsa"
-    # ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=known_hosts -i id_rsa"
   become: true
   become_method: sudo
   roles:
