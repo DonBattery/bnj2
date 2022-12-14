@@ -1,0 +1,14 @@
+---
+- name: Write docker-compose file
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ app_directory }}/docker-compose.yml"
+    owner: "{{ app_user }}"
+    mode: 0660
+
+- name: Write nginx.conf file
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: "{{ app_directory }}/nginx.conf"
+    owner: "{{ app_user }}"
+    mode: 0660

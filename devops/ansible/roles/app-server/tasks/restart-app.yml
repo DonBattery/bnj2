@@ -1,0 +1,14 @@
+---
+- name: Tear down existing services
+  community.docker.docker_compose:
+    project_src: "{{ app_directory }}"
+    state: absent
+
+- name: Create and start services
+  community.docker.docker_compose:
+    project_src: "{{ app_directory }}"
+  register: docker_compose_output
+
+- name: "Debug docker-compose output"
+  ansible.builtin.debug:
+    var: docker_compose_output

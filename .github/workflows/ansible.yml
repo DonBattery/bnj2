@@ -53,12 +53,12 @@ jobs:
           echo "$SSH_KEY" > id_rsa
           chmod 600 id_rsa
 
-      - name: Write known_hosts file
-        env:
-          KNOWN_HOSTS: ${{ secrets.STAGING_KNOWN_HOSTS }}
-        run: |
-          echo "$KNOWN_HOSTS" > known_hosts
-          chmod 600 known_hosts
+      # - name: Write known_hosts file
+      #   env:
+      #     KNOWN_HOSTS: ${{ secrets.STAGING_KNOWN_HOSTS }}
+      #   run: |
+      #     echo "$KNOWN_HOSTS" > known_hosts
+      #     chmod 600 known_hosts
 
       - name: Write Inventory file
         env:
@@ -67,6 +67,4 @@ jobs:
 
       # ansible --key-file id_rsa -i inventory all -m ping -vvv
       - name: Deploy to Staging with Ansible
-        run: |
-          ls -a
-          ansible-playbook -vvv -i inventory deploy-staging.yml
+        run: ansible-playbook -v -i inventory --extra-vars "role_action=deploy app_environment=staging” manage-app-server.yml

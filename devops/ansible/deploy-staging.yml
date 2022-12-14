@@ -1,7 +1,0 @@
----
-- name: This is a hello-world example
-  hosts: all
-  vars:
-    ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=known_hosts -i id_rsa"
-  roles:
-    - app-server

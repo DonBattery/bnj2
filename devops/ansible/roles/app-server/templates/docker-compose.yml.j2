@@ -8,13 +8,14 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - 80
+      - 80:80
     depends_on:
       - backend
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
     networks:
-      - app-netwo
+      - app-network
+
   # Frontend
   frontend:
     image: donbattery/bnj-frontend:{{ app_environment }}
