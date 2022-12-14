@@ -8,26 +8,19 @@
 
 name: CD
 
-# CD Conditions
-# on:
-#   pull_request:
-#     branches:
-#       - master
-#     types:
-#       - closed
-
-# CI conditions
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    branches:
       - master
+    types:
+      - closed
 
 # Steve
 jobs:
   build-and-push-server-image:
     # CD Conditions
     # Only run when a pull request is merged
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
@@ -47,7 +40,7 @@ jobs:
   build-and-push-client-image:
     # CD Conditions
     # Only run when a pull request is merged
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
