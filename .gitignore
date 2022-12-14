@@ -1,2 +1,7 @@
 .vscode
 .DS_Store
+
+devops/ansible/inventory
+devops/ansible/inventory.yml
+devops/ansible/id_rsa
+devops/ansible/known_hosts

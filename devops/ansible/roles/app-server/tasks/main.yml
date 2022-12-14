@@ -1,0 +1,24 @@
+---
+########################
+# Provision App Server #
+########################
+- name: Provision App Server(s)
+  include_tasks: provision-app-server.yml
+  when:
+    - role_action == "setup"
+
+########################
+# Deploy configuration #
+########################
+- name: (Re)configure Application
+  include_tasks: deploy-app-config.yml
+  when:
+    - role_action == "deploy" or role_action == "config"
+
+#################
+# (Re)start App #
+#################
+- name: Deploy Application
+  include_tasks: restart-app.yml
+  when:
+    - role_action == "deploy" or role_action == "config"

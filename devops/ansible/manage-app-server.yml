@@ -1,0 +1,9 @@
+---
+- name: "Manage Bump 'n Junk application servers"
+  hosts: all
+  vars:
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no -i id_rsa"
+  become: true
+  become_method: sudo
+  roles:
+    - app-server
