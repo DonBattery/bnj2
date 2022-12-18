@@ -2,7 +2,7 @@
   "name": "bnj2-client",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "scripts/backend-container.sh && VITE_WS_HOST=\"localhost:9090\" vite",
     "build": "vite build",
     "serve": "vite preview"
   },
