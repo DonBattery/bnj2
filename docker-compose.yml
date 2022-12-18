@@ -1,7 +1,6 @@
-version: '3'
+version: "3"
 
 services:
-
   #Nginx Service
   webserver:
     image: nginx:alpine
@@ -13,8 +12,7 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      # - ./client:/client
+      - ./devops/nginx/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - app-network
 
@@ -37,4 +35,3 @@ services:
 networks:
   app-network:
     driver: bridge
-

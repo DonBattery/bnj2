@@ -1,6 +1,8 @@
 .vscode
 .DS_Store
 
+server/tmp
+
 devops/ansible/inventory
 devops/ansible/inventory.yml
 devops/ansible/id_rsa
