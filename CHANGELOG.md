@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Hot reload (rebuild) backend and frontend containers
+- Hot reload (rebuild) backend and frontend development containers
 
 ## [0.1.1] - 2022-12-14
 
