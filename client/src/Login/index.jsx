@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-// import characters from '/src/characters';
-import Character from '../Character';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import CharacterAnimation from '../Character';
 import './index.css';
 
-const characters = ['dino-doux', 'dino-doux', 'dino-doux', 'dino-doux', 'dino-doux'];
+const characters = ['dino-doux', 'dino-valami'];
 
 const Login = function ({ onLogin }) {
   const [nickname, setNickname] = useState('');
@@ -17,7 +16,7 @@ const Login = function ({ onLogin }) {
     });
   };
 
-  const handleSelect = id => () => setCharacter(id);
+  const handleSelect = (id) => () => setCharacter(id);
 
   return (
     <form onSubmit={requestLogin} className="Login centered">
@@ -30,9 +29,17 @@ const Login = function ({ onLogin }) {
         Character
 
         <div className="Login-characters">
-          {characters.map((c, i) => <div onClick={handleSelect(i)}>
-            <Character selected={i === character} selectedFrame="image13.png" key={c} id={c} />
-          </div>)}
+          {characters.map((c, i) => (
+            <div
+              role="button"
+              tabIndex={i}
+              onClick={handleSelect(i)}
+              onKeyDown={handleSelect(i)}
+              key={`char_${c}`}
+            >
+              <CharacterAnimation selected={i === character} selectedFrame="image13.png" key={c} id={c} />
+            </div>
+          ))}
         </div>
       </label>
 

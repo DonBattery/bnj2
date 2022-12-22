@@ -4,27 +4,29 @@ import {
   Container,
   AnimatedSprite,
   useApp,
-} from '@inlet/react-pixi'
+} from '@inlet/react-pixi';
 import * as PIXI from 'pixi.js';
 import './index.css';
 
 const [WIDTH, HEIGHT] = [20, 20];
 
-export const Character = function ({ id, selected, selectedFrame, ...props }) {
+export const Character = function ({
+  id, selected, selectedFrame, ...props
+}) {
   const app = useApp();
   const [frames, setFrames] = useState([]);
 
-  const spriteSheet = `/assets/${id}.json`
+  const spriteSheet = `/assets/${id}.json`;
 
   useEffect(() => {
     const loadedSprite = app.loader.resources?.[spriteSheet];
     if (!loadedSprite) {
       app.loader.add(spriteSheet).load((loader, resource) => {
         setFrames(
-          resource[spriteSheet].data.animations
+          resource[spriteSheet].data.animations,
         );
       });
-    } 
+    }
   }, [app]);
 
   if (frames.length === 0) {
@@ -32,7 +34,7 @@ export const Character = function ({ id, selected, selectedFrame, ...props }) {
   }
 
   const selectedFrames = selectedFrame ? [selectedFrame] : frames[selected ? 'run' : 'walk'];
-  const textures = selectedFrames.map(f => PIXI.Texture.from(f));
+  const textures = selectedFrames.map((f) => PIXI.Texture.from(f));
 
   return (
     <AnimatedSprite
@@ -45,13 +47,14 @@ export const Character = function ({ id, selected, selectedFrame, ...props }) {
   );
 };
 
-const Wrapper = ({ id, selected }) => (
-  <Stage className={`Wrapper ${selected && 'selected'}`} width={WIDTH} height={HEIGHT}>
-    <Container>
-      <Character id={id} selected={selected} />
-    </Container>
+const Wrapper = function ({ id, selected }) {
+  return (
+    <Stage className={`Wrapper ${selected && 'selected'}`} width={WIDTH} height={HEIGHT}>
+      <Container>
+        <Character id={id} selected={selected} />
+      </Container>
     </Stage>
-);
-
+  );
+};
 
 export default Wrapper;

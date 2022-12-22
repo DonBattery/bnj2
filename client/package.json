@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@inlet/react-pixi": "^6.6.5",
+    "flatbuffers": "^22.12.6",
     "prop-types": "^15.7.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
